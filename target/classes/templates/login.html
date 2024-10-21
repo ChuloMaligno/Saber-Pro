@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" />
+<link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+	<div class="container">
+        <div class="login-container  mx-auto">
+            <th:block th:with="actionUrl= 
+                ${tipo == 'estudiante' ? '/login/estudiante' : 
+                (tipo == 'coordinador' ? '/login/coordinador' : '')}">
+                <form th:action="@{${actionUrl}}" method="post" class="form">
+                    <h1>Ingreso</h1>
+                    <div class="form_container">
+                        <div class="form-group">
+                            <label for="usuario">Nombre de usuario</label>
+                            <input type="text" id="usuario" name="usuario" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contraseña">Contraseña</label>
+                            <input type="password" id="contraseña" name="contraseña" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn form_submit">Ingresar</button>
+
+                        <p th:if="${error}" th:text="${error}"></p>
+                    </div>
+                </form>
+            </th:block>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
